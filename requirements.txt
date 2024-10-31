@@ -1,0 +1,14 @@
+ipykernel
+notebook
+ucimlrepo
+matplotlib
+seaborn
+scipy
+scikit-learn
+xgboost
+lightgbm
+catboost
+pydrive
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib

@@ -13,7 +13,7 @@ list_of_files = [
     f"src/{package_name}/components/model_evaluation.py",
     f"src/{package_name}/components/model_pusher.py",
     f"src/{package_name}/constants/__init__.py",
-    f"src/{package_name}/config/__init__.py",
+    f"src/{package_name}/configuration/__init__.py",
     f"src/{package_name}/entity/__init__.py",
     f"src/{package_name}/exception/__init__.py",
     f"src/{package_name}/logger/__init__.py",

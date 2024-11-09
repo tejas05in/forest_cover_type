@@ -162,3 +162,4 @@ notebooks/covertype.csv
 credentials.json
 token.json
 rf_classifier.pkl
+artifacts/*

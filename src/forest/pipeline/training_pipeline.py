@@ -26,4 +26,4 @@ class TrainPipeline:
             raise CustomException(e, sys)
 
     def run_pipeline(self):
-        data_ingestion_artifact = self.start_data_ingestion(self)
+        data_ingestion_artifact = self.start_data_ingestion()

@@ -89,7 +89,7 @@ class DataIngestion:
         try:
             dataframe = self.export_data_into_feature_store()
             _schema_config = read_yaml_file(file_path=SCHEMA_FILE_PATH)
-            dataframe = dataframe.drop(_schema_config['drop_columns'], axis=1)
+            # dataframe = dataframe.drop(_schema_config['drop_columns'], axis=1)
             self.split_data_as_train_test(dataframe)
             data_ingestion_artifact = DataIngestionArtifact(
                 trained_file_path=self.data_ingestion_config.training_file_path,

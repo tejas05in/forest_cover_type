@@ -63,8 +63,9 @@ class DataValidation:
                 if column not in dataframe_columns:
                     status = False
                     missing_numerical_columns.append(column)
-            logging.info(
-                f"Missing numerical columns: {missing_numerical_columns}")
+            if len(missing_numerical_columns) > 0:
+                logging.info(
+                    f"Missing numerical columns: {missing_numerical_columns}")
             return status
         except Exception as e:
             logging.error(f"Error in is_numerical_column_exist: {str(e)}")

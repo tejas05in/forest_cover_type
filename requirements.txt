@@ -12,4 +12,6 @@ google-auth-httplib2
 google-auth-oauthlib
 from-root
 evidently==0.2.8
+dill
+imblearn
 # -e .

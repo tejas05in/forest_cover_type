@@ -121,12 +121,12 @@ class DataValidation:
             if not status:
                 validation_error_msg += "Columns are misssing in test dataframe"
             validation_status = len(validation_error_msg) == 0
-            if validation_status:
-                drift_status = self.detect_data_drift(train_df, test_df)
-                if drift_status:
-                    logging.info("Data Drift detected")
-            else:
-                logging.info(f"Data validation failed: {validation_error_msg}")
+            # if validation_status:
+            #     drift_status = self.detect_data_drift(train_df, test_df)
+            #     if drift_status:
+            #         logging.info("Data Drift detected")
+            # else:
+            #     logging.info(f"Data validation failed: {validation_error_msg}")
             data_validation_artifact = DataValidationArtifact(
                 validation_status=validation_status,
                 message=validation_error_msg,

@@ -3,6 +3,7 @@ import sys
 from forest.components.data_ingestion import DataIngestion
 from forest.components.data_validation import DataValidation
 from forest.components.data_transformation import DataTransformation
+from forest.components.model_training import ModelTrainer
 from forest.logger import logging
 from forest.exception import CustomException
 from forest.entity.config_entity import *
@@ -14,6 +15,7 @@ class TrainPipeline:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
         self.data_transformation_config = DataTransformationConfig()
+        self.model_trainer_config = ModelTrainerConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
@@ -59,10 +61,28 @@ class TrainPipeline:
             logging.error(f"Error in start_data_transformation: {str(e)}")
             raise CustomException(e, sys)
 
+    def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:
+        try:
+            logging.info(
+                "Entering start_model_trainer method of the TrainPipeline class")
+            model_trainer = ModelTrainer(
+                data_transformation_artifact=data_transformation_artifact,
+                model_trainer_config=self.model_trainer_config)
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            logging.info(
+                "Exited start_model_trainer method of the TrainPipeline class")
+            return model_trainer_artifact
+        except Exception as e:
+            logging.error(f"Error in start_model_trainer: {str(e)}")
+            raise CustomException(e, sys) from e
+
     def run_pipeline(self):
         data_ingestion_artifact = self.start_data_ingestion()
         data_validation_artifact = self.start_data_validation(
             data_ingestion_artifact)
-        data_tranformation_artifact = self.start_data_transformation(
-            data_ingestion_artifact)
-        print(data_tranformation_artifact)
+        if data_validation_artifact.validation_status:
+            data_tranformation_artifact = self.start_data_transformation(
+                data_ingestion_artifact)
+            model_trainer_artifact = self.start_model_trainer(
+                data_tranformation_artifact)
+            print(model_trainer_artifact)

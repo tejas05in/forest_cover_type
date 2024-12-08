@@ -1,3 +1,4 @@
+import logging.handlers
 import os
 import logging
 from datetime import datetime
@@ -10,7 +11,10 @@ os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE_PATH = os.path.join(LOG_DIR, LOG_FILE_NAME)
 
 logging.basicConfig(
-    filename=LOG_FILE_PATH,
     format="[%(asctime)s] %(lineno)d - %(levelname)s %(message)s",
-    level=logging.INFO
+    level=logging.INFO,
+    handlers=[
+        logging.FileHandler(LOG_FILE_PATH),
+        logging.StreamHandler()
+    ]
 )

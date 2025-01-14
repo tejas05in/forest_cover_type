@@ -55,6 +55,7 @@ class ModelTrainerConfig:
         self.expected_accuracy: float = MODEL_TRAINER_EXPECTED_SCORE
         self.model_config_file_path: str = MODEL_TRAINER_MODEL_CONFIG_FILE_PATH
 
+
 @dataclass
 class ModelEvaluationConfig:
     def __init__(self):

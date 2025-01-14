@@ -3,8 +3,8 @@ import sys
 import yaml
 import numpy as np
 import dill
-from forest.logger import logging
-from forest.exception import CustomException
+from src.forest.logger import logging
+from src.forest.exception import CustomException
 
 
 def read_yaml_file(file_path: str) -> dict:

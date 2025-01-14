@@ -1,13 +1,13 @@
 import sys
 import numpy as np
-from forest.constants import *
-from forest.exception import CustomException
-from forest.logger import logging
-from forest.entity.config_entity import ModelTrainerConfig
-from forest.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact, ClassificationMetricArtifact
+from src.forest.constants import *
+from src.forest.exception import CustomException
+from src.forest.logger import logging
+from src.forest.entity.config_entity import ModelTrainerConfig
+from src.forest.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact, ClassificationMetricArtifact
 from neuro_mf import ModelFactory
-from forest.entity.estimator import ForestModel
-from forest.utils.main_utils import load_numpy_array_data, load_object, save_object
+from src.forest.entity.estimator import ForestModel
+from src.forest.utils.main_utils import load_numpy_array_data, load_object, save_object
 from typing import Tuple, List
 from sklearn.metrics import f1_score, precision_score, recall_score
 

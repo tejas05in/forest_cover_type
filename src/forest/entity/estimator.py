@@ -1,8 +1,8 @@
 import sys
 from pandas import DataFrame
 from sklearn.pipeline import Pipeline
-from forest.exception import CustomException
-from forest.logger import logging
+from src.forest.exception import CustomException
+from src.forest.logger import logging
 
 
 class ForestModel:

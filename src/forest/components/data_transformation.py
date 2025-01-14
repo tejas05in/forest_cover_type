@@ -1,17 +1,17 @@
 import sys
 import numpy as np
 import pandas as pd
-from forest.exception import CustomException
-from forest.logger import logging
+from src.forest.exception import CustomException
+from src.forest.logger import logging
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from imblearn.combine import SMOTEENN
-from forest.constants import *
-from forest.entity.config_entity import *
-from forest.entity.artifact_entity import *
-from forest.utils.main_utils import save_object, save_numpy_array_data, read_yaml_file
+from src.forest.constants import *
+from src.forest.entity.config_entity import *
+from src.forest.entity.artifact_entity import *
+from src.forest.utils.main_utils import save_object, save_numpy_array_data, read_yaml_file
 
 
 class DataTransformation:

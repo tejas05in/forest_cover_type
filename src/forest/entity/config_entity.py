@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
 from from_root import from_root
-from forest.constants import *
+from src.forest.constants import *
 
 
 @dataclass
@@ -54,3 +54,10 @@ class ModelTrainerConfig:
             MODEL_FILE_NAME)
         self.expected_accuracy: float = MODEL_TRAINER_EXPECTED_SCORE
         self.model_config_file_path: str = MODEL_TRAINER_MODEL_CONFIG_FILE_PATH
+
+@dataclass
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+        self.bucket_name: str = MODEL_PUSHER_BUCKET_NAME
+        self.s3_model_key_path: str = os.path.join(MODEL_PUSHER_S3_KEY, MODEL_FILE_NAME)

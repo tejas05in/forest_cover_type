@@ -2,12 +2,12 @@ import os
 import sys
 import json
 import pandas as pd
-from forest.logger import logging
-from forest.exception import CustomException
-from forest.entity.config_entity import *
-from forest.entity.artifact_entity import *
-from forest.constants import *
-from forest.utils.main_utils import *
+from src.forest.logger import logging
+from src.forest.exception import CustomException
+from src.forest.entity.config_entity import *
+from src.forest.entity.artifact_entity import *
+from src.forest.constants import *
+from src.forest.utils.main_utils import *
 from evidently.model_profile import Profile
 from evidently.model_profile.sections import DataDriftProfileSection
 
@@ -91,9 +91,9 @@ class DataValidation:
             json_report = json.loads(report)
             write_yaml_file(
                 file_path=self.data_validation_config.drift_report_file_path, content=json_report)
-            n_feaures = json_report['data_drift']['data']['metrics']['n_features']
+            n_features = json_report['data_drift']['data']['metrics']['n_features']
             n_drifted_features = json_report['data_drift']['data']['metrics']['n_drifted_features']
-            logging.info(f"{n_drifted_features}/{n_feaures} drift detected")
+            logging.info(f"{n_drifted_features}/{n_features} drift detected")
             drift_status = json_report['data_drift']['data']['metrics']['dataset_drift']
             return drift_status
         except Exception as e:
@@ -110,16 +110,16 @@ class DataValidation:
                                  DataValidation.read_data(self.data_ingestion_artifact.test_file_path))
             status = self.validate_number_of_columns(train_df)
             if not status:
-                validation_error_msg += "Columns not valid and are misssing in train dataframe"
+                validation_error_msg += "Columns not valid and are missing in train dataframe"
             status = self.validate_number_of_columns(test_df)
             if not status:
-                validation_error_msg += "Columns not valid are misssing in test dataframe"
+                validation_error_msg += "Columns not valid are missing in test dataframe"
             status = self.is_numerical_column_exist(train_df)
             if not status:
-                validation_error_msg += "Columns are misssing in train dataframe"
+                validation_error_msg += "Columns are missing in train dataframe"
             status = self.is_numerical_column_exist(test_df)
             if not status:
-                validation_error_msg += "Columns are misssing in test dataframe"
+                validation_error_msg += "Columns are missing in test dataframe"
             validation_status = len(validation_error_msg) == 0
             # if validation_status:
             #     drift_status = self.detect_data_drift(train_df, test_df)

@@ -1,12 +1,12 @@
 import os
 import sys
 import pandas as pd
-from forest.logger import logging
-from forest.exception import CustomException
-from forest.entity.config_entity import *
-from forest.entity.artifact_entity import *
-from forest.utils.main_utils import *
-from forest.data_access.forest_data import ForestData
+from src.forest.logger import logging
+from src.forest.exception import CustomException
+from src.forest.entity.config_entity import *
+from src.forest.entity.artifact_entity import *
+from src.forest.utils.main_utils import *
+from src.forest.data_access.forest_data import ForestData
 from sklearn.model_selection import train_test_split
 
 

@@ -1,13 +1,13 @@
 import os
 import sys
-from forest.components.data_ingestion import DataIngestion
-from forest.components.data_validation import DataValidation
-from forest.components.data_transformation import DataTransformation
-from forest.components.model_training import ModelTrainer
-from forest.logger import logging
-from forest.exception import CustomException
-from forest.entity.config_entity import *
-from forest.entity.artifact_entity import *
+from src.forest.components.data_ingestion import DataIngestion
+from src.forest.components.data_validation import DataValidation
+from src.forest.components.data_transformation import DataTransformation
+from src.forest.components.model_training import ModelTrainer
+from src.forest.logger import logging
+from src.forest.exception import CustomException
+from src.forest.entity.config_entity import *
+from src.forest.entity.artifact_entity import *
 
 
 class TrainPipeline:

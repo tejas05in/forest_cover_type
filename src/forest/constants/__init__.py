@@ -39,3 +39,9 @@ MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_FILE_NAME: str = "model.pkl"
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join(
     "config", "model.yaml")
+
+# MODEL_EVALUATION related constants start with MODEL_EVALUATION VAR_NAME
+
+MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
+MODEL_PUSHER_BUCKET_NAME: str = "forest-model1"
+MODEL_PUSHER_S3_KEY: str = "model-registry"

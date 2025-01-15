@@ -241,3 +241,8 @@ credentials.json
 token.json
 rf_classifier.pkl
 artifacts/*
+/.idea/.gitignore
+/.idea/Forest_Cover_Type.iml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml

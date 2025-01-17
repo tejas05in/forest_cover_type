@@ -62,3 +62,8 @@ class ModelEvaluationConfig:
         self.changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
         self.bucket_name: str = MODEL_PUSHER_BUCKET_NAME
         self.s3_model_key_path: str = os.path.join(MODEL_PUSHER_S3_KEY, MODEL_FILE_NAME)
+
+@dataclass
+class ModelPusherConfig:
+    bucket_name: str = MODEL_PUSHER_BUCKET_NAME
+    s3_model_key_path: str = os.path.join(MODEL_PUSHER_S3_KEY, MODEL_FILE_NAME)

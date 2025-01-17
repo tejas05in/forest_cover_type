@@ -1,4 +1,3 @@
-import os
 import sys
 from src.forest.components.data_ingestion import DataIngestion
 from src.forest.components.data_validation import DataValidation
@@ -54,9 +53,9 @@ class TrainPipeline:
                 data_ingestion_artifact=data_ingestion_artifact,
                 data_transformation_config=self.data_transformation_config)
             data_transformation_artifact = data_transformation.initiate_data_transformation()
-            return data_transformation_artifact
             logging.info(
                 "Exited start_data_transformation method of the TrainPipeline class")
+            return data_transformation_artifact
         except Exception as e:
             logging.error(f"Error in start_data_transformation: {str(e)}")
             raise CustomException(e, sys)
@@ -81,8 +80,8 @@ class TrainPipeline:
         data_validation_artifact = self.start_data_validation(
             data_ingestion_artifact)
         if data_validation_artifact.validation_status:
-            data_tranformation_artifact = self.start_data_transformation(
+            data_transformation_artifact = self.start_data_transformation(
                 data_ingestion_artifact)
             model_trainer_artifact = self.start_model_trainer(
-                data_tranformation_artifact)
+                data_transformation_artifact)
             print(model_trainer_artifact)

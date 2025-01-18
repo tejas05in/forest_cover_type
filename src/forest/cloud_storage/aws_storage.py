@@ -1,6 +1,6 @@
 from logging import exception
 import boto3
-from forest.configuration.aws_connection import S3Client
+from src.forest.configuration.aws_connection import S3Client
 from io import StringIO
 from typing import Union, List
 import os

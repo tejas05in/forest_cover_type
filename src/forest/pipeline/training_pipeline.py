@@ -3,6 +3,7 @@ from src.forest.components.data_ingestion import DataIngestion
 from src.forest.components.data_validation import DataValidation
 from src.forest.components.data_transformation import DataTransformation
 from src.forest.components.model_training import ModelTrainer
+from src.forest.components.model_pusher import ModelPusher
 from src.forest.logger import logging
 from src.forest.exception import CustomException
 from src.forest.entity.config_entity import *
@@ -15,6 +16,7 @@ class TrainPipeline:
         self.data_validation_config = DataValidationConfig()
         self.data_transformation_config = DataTransformationConfig()
         self.model_trainer_config = ModelTrainerConfig()
+        self.model_pusher_config = ModelPusherConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
@@ -75,6 +77,24 @@ class TrainPipeline:
             logging.error(f"Error in start_model_trainer: {str(e)}")
             raise CustomException(e, sys) from e
 
+
+    def start_model_pusher(self, model_trainer_artifact : ModelTrainerArtifact) -> ModelPusherArtifact:
+        try:
+            logging.info(
+                "Entering start_model_pusher method of the TrainPipeline class"
+            )
+            model_pusher = ModelPusher(
+                model_trainer_artifact=model_trainer_artifact,
+                model_pusher_config=self.model_pusher_config)
+            model_pusher_artifact = model_pusher.initiate_model_pusher()
+            logging.info(
+                "Exited start_model_pusher method of the TrainPipeline class"
+            )
+            return model_pusher_artifact
+        except Exception as e:
+            logging.error(f"Error in start_model_pusher: {str(e)}")
+            raise CustomException(e, sys) from e
+
     def run_pipeline(self):
         data_ingestion_artifact = self.start_data_ingestion()
         data_validation_artifact = self.start_data_validation(
@@ -84,4 +104,5 @@ class TrainPipeline:
                 data_ingestion_artifact)
             model_trainer_artifact = self.start_model_trainer(
                 data_transformation_artifact)
-            print(model_trainer_artifact)
+            model_pusher_artifact = self.start_model_pusher(model_trainer_artifact)
+            print(model_pusher_artifact)

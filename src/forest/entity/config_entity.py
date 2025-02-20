@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass
 from from_root import from_root
 from src.forest.constants import *
-
+from src.forest.constants import prediction_pipeline
 
 @dataclass
 class DataIngestionConfig:
@@ -67,3 +67,12 @@ class ModelEvaluationConfig:
 class ModelPusherConfig:
     bucket_name: str = MODEL_PUSHER_BUCKET_NAME
     s3_model_key_path: str = os.path.join(MODEL_PUSHER_S3_KEY, MODEL_FILE_NAME)
+
+
+@dataclass
+class PredictionPipelineConfig:
+    data_bucket_name: str = prediction_pipeline.PREDICTION_DATA_BUCKET
+    data_file_path: str = prediction_pipeline.PREDICTION_INPUT_FILE_NAME
+    model_file_path: str = os.path.join(MODEL_PUSHER_S3_KEY, MODEL_FILE_NAME)
+    model_bucket_name: str = prediction_pipeline.MODEL_BUCKET_NAME
+    output_file_name: str = prediction_pipeline.PREDICTION_OUTPUT_FILE_NAME
